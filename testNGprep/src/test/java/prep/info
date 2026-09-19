@@ -5,15 +5,16 @@ selenium only web automation interacting with elements adding verification is no
 need to have test cases and validate and execute together
 
 adv :
-1. test cases and test suites
-2. grouping of test cases(divide in to multiple grps)
-3. prioritize
-4. parameterize
-5. parallel testing
-6. report
+        1. test cases and test suites
+        2. grouping of test cases(divide in to multiple grps)
+        3. prioritize
+        4. parameterize
+        5. parallel testing
+        6. report
 
-adding testNG library from maven repository link : https://mvnrepository.com/artifact/org.testng/testng
-copy the dependency add to pom.xml
+    adding testNG library from maven repository link : https://mvnrepository.com/artifact/org.testng/testng
+    copy the dependency add to pom.xml
 
-in testNG there is no main method
-it has @Test annotation (kind of replacement to main method) test method in the class
+    in testNG there is no main method
+    it has @Test annotation (kind of replacement to main method) test method in the class
+
