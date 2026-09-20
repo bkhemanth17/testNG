@@ -18,3 +18,21 @@ adv :
     in testNG there is no main method
     it has @Test annotation (kind of replacement to main method) test method in the class
 
+    to open testNG reports (test-output files/folders) - > run -> edit configurations
+    On the left side, look for Templates (or default configurations) and select TestNG.
+    Open the Listeners tab.
+    Check the box that says "Use default reporters". -> Click Apply.
+
+    creating testNg.xml file
+    1. suite file
+    2. inside test file/files
+    3. inside classes inside classes class file/files name
+
+    for ref:
+    <suite name="DefaultSuite" verbose="2">
+        <test name="LoginTest">
+            <classes>
+                <class name="basic.basicLoginImpl"/>
+            </classes>
+        </test>
+    </suite>

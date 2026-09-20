@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-09-20T13:13:00 IST" name="DefaultSuite" finished-at="2026-09-20T13:13:11 IST" duration-ms="11164">
+    <groups>
+    </groups>
+    <test started-at="2026-09-20T13:13:00 IST" name="LoginTest" finished-at="2026-09-20T13:13:11 IST" duration-ms="11164">
+      <class name="basic.basicLoginImpl">
+        <test-method signature="openWeb()[pri:-1, instance:basic.basicLoginImpl@3901d134]" started-at="2026-09-20T13:13:00 IST" name="openWeb" finished-at="2026-09-20T13:13:07 IST" duration-ms="7050" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openWeb -->
+        <test-method signature="logoPresence()[pri:0, instance:basic.basicLoginImpl@3901d134]" started-at="2026-09-20T13:13:07 IST" name="logoPresence" finished-at="2026-09-20T13:13:08 IST" duration-ms="515" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoPresence -->
+        <test-method signature="login()[pri:1, instance:basic.basicLoginImpl@3901d134]" started-at="2026-09-20T13:13:08 IST" name="login" finished-at="2026-09-20T13:13:09 IST" duration-ms="1401" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method signature="logout()[pri:15, instance:basic.basicLoginImpl@3901d134]" started-at="2026-09-20T13:13:09 IST" name="logout" finished-at="2026-09-20T13:13:11 IST" duration-ms="1531" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logout -->
+        <test-method signature="close()[pri:900, instance:basic.basicLoginImpl@3901d134]" started-at="2026-09-20T13:13:11 IST" name="close" finished-at="2026-09-20T13:13:11 IST" duration-ms="560" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- basic.basicLoginImpl -->
+    </test> <!-- LoginTest -->
+  </suite> <!-- DefaultSuite -->
+</testng-results>

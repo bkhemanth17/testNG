@@ -56,7 +56,7 @@ public class basicLoginImpl {
 
     @Test(priority = 900)
     void close(){
-        driver.close();
+        driver.quit();
         System.out.println("closed web page");
     }
 }
