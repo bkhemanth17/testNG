@@ -1,0 +1,38 @@
+assertion - validations
+whenever a test is passed or failed only that result should come on report
+Assert class
+
+instead of conditional statements/loops use assertion statements only assertion statements can
+make our statements pass or fail
+
+-> we can use assertion along with conditional statements also if required
+put the assertions with test conditions methods and it will help to validate
+
+Assert.assertEquals(s,s2);
+Assert.assertTrue(true);
+
+2 kinds
+     1. Hard assertions
+     2. soft assertions
+
+when importing classes and it's methods some of the methods are present in junit also with same name
+look clearly and import org.testng
+
+ Hard assertions - are static classes and the method directly access from assert class directly
+
+ limitations :
+ When assertions methods got failed the next statements will not be executed
+ statements/remaining code after the validation(assertion) will not execute
+
+so in test methods the last statement should be used for validation (assertions)
+so even if that is failed nothing left after the assertions so we put them in the last
+
+in case if we need to execute any statements after assertions we use soft assertion
+so even if validation/assertion failed the next statements execute
+
+in hard assertion we call method directly, instead we create object of SoftAssert class and create it's object
+and access all the methods same methods present in both hard and soft assertions
+
+at the end all at last we write "sa.assertAll()". -> otherwise it will always pass
+soft assertions by default pass
+
