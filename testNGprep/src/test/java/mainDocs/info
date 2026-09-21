@@ -1,0 +1,120 @@
+TestNG - Test New Generation
+java based unit testing tool
+
+selenium only web automation interacting with elements adding verification is not enough
+need to have test cases and validate and execute together
+
+adv :
+        1. test cases and test suites
+        2. grouping of test cases(divide in to multiple grps)
+        3. prioritize
+        4. parameterize
+        5. parallel testing
+        6. report
+
+    adding testNG library from maven repository link : https://mvnrepository.com/artifact/org.testng/testng
+    copy the dependency add to pom.xml
+
+    in testNG there is no main method
+    it has @Test annotation (kind of replacement to main method) test method in the class
+
+    to open testNG reports (test-output files/folders) - > run -> edit configurations
+    On the left side, look for Templates (or default configurations) and select TestNG.
+    Open the Listeners tab.
+    Check the box that says "Use default reporters". -> Click Apply.
+
+    creating testNg.xml file
+    1. suite file
+    2. inside test file/files
+    3. inside classes inside classes class file/files name
+
+    for ref:
+    <suite name="DefaultSuite" verbose="2">
+        <test name="LoginTest">
+            <classes>
+                <class name="basic.basicLoginImpl"/>
+            </classes>
+        </test>
+    </suite>
+
+    annotations:
+    @Test
+
+    @BeforeMethod -> runs only when before execution of any test method in the class
+    @AfterMethod  -> runs only when after execution of any test method in the class
+--------------------------------------------------------------------
+
+    @BeforeClass  -> executes only before starting of the class (inside class there are methods - test methods)
+    @AfterClass   -> executes only after ending of the class (inside class there are methods - test methods)
+
+--------------------------------------------------------------------
+
+    // according to testNG.xml -> it's the collection of classes is called one test
+    @BeforeTest
+    @AfterTest
+
+    work at test entry level
+    <suite name="DefaultSuite" verbose="2">   -------> before suite
+        <test name="LoginTest">     ------> before test
+            <classes>               ------> before class
+                <class name="basic.basicLoginImpl"/>  -----> before method |  test | after method
+            </classes>             -------> after class
+        </test>                    -------> after test
+    </suite>                       -------> after suite
+
+--------------------------------------------------------------------
+
+    // imp for @BeforeTest and @AfterTest
+
+    1. if there is only one class then before test and after test will execute only once not everytime
+    example 1: here we have only one class in both test so before test and after test will work only once.
+
+    <suite name="DefaultSuite" verbose="2">
+        <test name="forTest1">
+            <classes>
+                <class name="testHandling.test1"/>
+            </classes>
+        </test>
+
+        <test name="forTest2">
+            <classes>
+                <class name="testHandling.test2"/>
+            </classes>
+        </test>
+
+    </suite>
+--------------------------------------------------------------------
+    2.It will only executes before test and after test when there are more than one class in the test
+    example 2: here we have more than one class in both tests so before test and after tests have worked for all the tests. (here 2 tests so 2 times).
+
+    <suite name="DefaultSuite" verbose="2">
+        <test name="forTest1">
+            <classes>
+                <class name="testHandling.test1"/>
+                <class name="testHandling.test2"/>
+            </classes>
+        </test>
+
+        <test name="forTest2">
+            <classes>
+                <class name="testHandling.test2"/>
+                <class name="testHandling.test1"/>
+            </classes>
+        </test>
+
+    </suite>
+--------------------------------------------------------------------
+    @BeforeSuite
+    @AfterSuite
+
+    suite will be from top to till bottom
+    <suite name="DefaultSuite" verbose="2">   -----------> BeforeSuite
+        <test name="forSuite1">
+            <classes>
+                <class name="suiteHandling.suite1"/>
+                <class name="suiteHandling.suite2"/>
+            </classes>
+        </test>
+    </suite>                                  ------------> AfterSuite
+
+--------------------------------------------------------------------

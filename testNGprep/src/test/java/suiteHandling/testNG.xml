@@ -1,0 +1,16 @@
+<suite name="DefaultSuite" verbose="2">
+    <test name="forSuite1">
+        <classes>
+            <class name="suiteHandling.suite1"/>
+            <class name="suiteHandling.suite2"/>
+        </classes>
+    </test>
+
+<!--    <test name="forSuite2">-->
+<!--        <classes>-->
+<!--            <class name="suiteHandling.suite2"/>-->
+<!--            <class name="suiteHandling.suite1"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+</suite>

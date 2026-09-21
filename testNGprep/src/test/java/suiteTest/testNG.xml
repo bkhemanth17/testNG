@@ -1,0 +1,27 @@
+<suite name="DefaultSuite" verbose="2">
+
+    <test name="forTest1">
+        <classes>
+            <class name="suiteTest.s1"/>
+            <class name="suiteTest.s2"/>
+            <class name="suiteTest.s3"/>
+        </classes>
+    </test>
+
+    <test name="forTest2">
+        <classes>
+            <class name="suiteTest.s2"/>
+            <class name="suiteTest.s3"/>
+            <class name="suiteTest.s1"/>
+        </classes>
+    </test>
+
+    <test name="forTest3">
+        <classes>
+            <class name="suiteTest.s3"/>
+            <class name="suiteTest.s1"/>
+            <class name="suiteTest.s2"/>
+        </classes>
+    </test>
+
+</suite>
