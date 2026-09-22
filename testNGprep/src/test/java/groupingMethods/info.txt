@@ -1,0 +1,97 @@
+if we to execute test methods based on groups
+
+class1 - > m1, m2,m3..
+class2 - > m4, m5, m6..
+class3 - > m7, m8, m9..
+
+if we want to execute for different test suites/cases based on groups
+
+loginGoogle, loginApple, loginTwitter - sanity (group)
+signUpGoogle, signUpApple, signUpTwitter - regression (group)
+googlePay, applePay, twitterPay - sanity, regression (group)
+
+single and multiple groups
+
+@Test(priority = 1, groups = {"sanity"})
+    void loginGoogle(){
+        System.out.println("logged in with Google...");
+    }
+
+ @Test(priority = 2, groups = {"regression"})
+    void signUpApple(){
+        System.out.println("signed up with Apple...");
+    }
+
+@Test(priority = 3, groups = {"regression", "sanity"})
+    void twitterPay(){
+        System.out.println("paid through twitter - cryptos...");
+    }
+
+inorder to execute the test methods we need to use testNG.xml - (xml files)
+
+<groups>
+            <run>
+<!--                <include name="sanity"/>-->
+<!--                <include name="regression"/>-->
+                <exclude name="regression"/>
+<!--                <include name="functional"/>-->
+            </run>
+</groups>
+
+include - includes with single groups that single name and multiple names (matches) - (kind of like OR operator)
+both single and multiple groups will considered for execution
+
+@Test(priority = 1, groups = {"sanity"})
+    void loginGoogle(){
+        System.out.println("logged in with Google...");
+    }
+
+ @Test(priority = 2, groups = {"regression", "sanity", "functional"})
+     void applePay(){
+         System.out.println("paid through apple pay...");
+     }
+
+exclude - excludes with single groups that single name and multiple names (matches) - (kind of like OR operator with not)
+both single and multiple groups will considered for execution
+
+ @Test(priority = 2, groups = {"regression"})
+    void signUpApple(){
+        System.out.println("signed up with Apple...");
+    }
+
+@Test(priority = 2, groups = {"regression", "sanity", "functional"})
+    void applePay(){
+        System.out.println("paid through apple pay...");
+    }
+
+if we want to get both sanity or regression - it's not possible if we include both in group it will execute both sanity and regression
+so better we create/use another name here it's functional.
+
+@Test(priority = 1, groups = {"regression", "sanity", "functional"})
+    void googlePay(){
+        System.out.println("paid through gPay...");
+    }
+
+we can use include and exclude combination also like include sanity and exclude regression
+
+full xml code :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="groupHandling">
+    <test name="groups">
+        <groups>
+            <run>
+<!--                <include name="sanity"/>-->
+<!--                <include name="regression"/>-->
+                <exclude name="regression"/>
+<!--                <include name="functional"/>-->
+            </run>
+        </groups>
+        <classes>
+            <class name="groupingMethods.loginMethods"/>
+            <class name="groupingMethods.signUpMethods"/>
+            <class name="groupingMethods.paymentMethods"/>
+        </classes>
+    </test>
+</suite>
