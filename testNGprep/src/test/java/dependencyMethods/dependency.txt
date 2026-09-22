@@ -1,0 +1,21 @@
+if one method is dependent on other method
+we don't need to unnecessarily execute all the methods only the methods which are dependents
+should be passed then only the following methods will be executed
+
+if the dependent method test got failed then the that method will be skipped
+
+if other test methods which dont have any dependency those will be executed normally
+
+for single - @Test (dependsOnMethods = {"method name"})
+
+@Test(priority = 3, dependsOnMethods = {"login"})
+    void search(){
+        Assert.assertTrue(true);
+    }
+
+for multiple - @Test (dependsOnMethods = {"method name", "method name"})
+
+@Test(priority = 4, dependsOnMethods = {"login", "search"})
+    void advSearch(){
+        Assert.assertTrue(true);
+    }

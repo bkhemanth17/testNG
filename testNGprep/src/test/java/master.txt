@@ -1,0 +1,188 @@
+TestNG - Test New Generation
+java based unit testing tool
+
+selenium only web automation interacting with elements adding verification is not enough
+need to have test cases and validate and execute together
+
+adv :
+        1. test cases and test suites
+        2. grouping of test cases(divide in to multiple grps)
+        3. prioritize
+        4. parameterize
+        5. parallel testing
+        6. report
+
+    adding testNG library from maven repository link : https://mvnrepository.com/artifact/org.testng/testng
+    copy the dependency add to pom.xml
+
+    in testNG there is no main method
+    it has @Test annotation (kind of replacement to main method) test method in the class
+
+    to open testNG reports (test-output files/folders) - > run -> edit configurations
+    On the left side, look for Templates (or default configurations) and select TestNG.
+    Open the Listeners tab.
+    Check the box that says "Use default reporters". -> Click Apply.
+
+    creating testNg.xml file
+    1. suite file
+    2. inside test file/files
+    3. inside classes inside classes class file/files name
+
+    for ref:
+    <suite name="DefaultSuite" verbose="2">
+        <test name="LoginTest">
+            <classes>
+                <class name="basic.basicLoginImpl"/>
+            </classes>
+        </test>
+    </suite>
+
+    annotations:
+    @Test
+
+    @BeforeMethod -> runs only when before execution of any test method in the class
+    @AfterMethod  -> runs only when after execution of any test method in the class
+--------------------------------------------------------------------
+
+    @BeforeClass  -> executes only before starting of the class (inside class there are methods - test methods)
+    @AfterClass   -> executes only after ending of the class (inside class there are methods - test methods)
+
+--------------------------------------------------------------------
+
+    // according to testNG.xml -> it's the collection of classes is called one test
+    @BeforeTest
+    @AfterTest
+
+    work at test entry level
+    <suite name="DefaultSuite" verbose="2">   -------> before suite
+        <test name="LoginTest">     ------> before test
+            <classes>               ------> before class
+                <class name="basic.basicLoginImpl"/>  -----> before method |  test | after method
+            </classes>             -------> after class
+        </test>                    -------> after test
+    </suite>                       -------> after suite
+
+--------------------------------------------------------------------
+
+    // imp for @BeforeTest and @AfterTest
+
+    1. if there is only one class then before test and after test will execute only once not everytime
+    example 1: here we have only one class in both test so before test and after test will work only once.
+
+    <suite name="DefaultSuite" verbose="2">
+        <test name="forTest1">
+            <classes>
+                <class name="testHandling.test1"/>
+            </classes>
+        </test>
+
+        <test name="forTest2">
+            <classes>
+                <class name="testHandling.test2"/>
+            </classes>
+        </test>
+
+    </suite>
+--------------------------------------------------------------------
+    2.It will only executes before test and after test when there are more than one class in the test
+    example 2: here we have more than one class in both tests so before test and after tests have worked for all the tests. (here 2 tests so 2 times).
+
+    <suite name="DefaultSuite" verbose="2">
+        <test name="forTest1">
+            <classes>
+                <class name="testHandling.test1"/>
+                <class name="testHandling.test2"/>
+            </classes>
+        </test>
+
+        <test name="forTest2">
+            <classes>
+                <class name="testHandling.test2"/>
+                <class name="testHandling.test1"/>
+            </classes>
+        </test>
+
+    </suite>
+--------------------------------------------------------------------
+    @BeforeSuite
+    @AfterSuite
+
+    suite will be from top to till bottom
+    <suite name="DefaultSuite" verbose="2">   -----------> BeforeSuite
+        <test name="forSuite1">
+            <classes>
+                <class name="suiteHandling.suite1"/>
+                <class name="suiteHandling.suite2"/>
+            </classes>
+        </test>
+    </suite>                                  ------------> AfterSuite
+
+--------------------------------------------------------------------
+                                Assertions
+--------------------------------------------------------------------
+
+
+assertion - validations
+whenever a test is passed or failed only that result should come on report
+Assert class
+
+instead of conditional statements/loops use assertion statements only assertion statements can
+make our statements pass or fail
+
+-> we can use assertion along with conditional statements also if required
+put the assertions with test conditions methods and it will help to validate
+
+Assert.assertEquals(s,s2);
+Assert.assertTrue(true);
+
+2 kinds
+     1. Hard assertions
+     2. soft assertions
+
+when importing classes and it's methods some of the methods are present in junit also with same name
+look clearly and import org.testng
+
+ Hard assertions - are static classes and the method directly access from assert class directly
+
+ limitations :
+ When assertions methods got failed the next statements will not be executed
+ statements/remaining code after the validation(assertion) will not execute
+
+so in test methods the last statement should be used for validation (assertions)
+so even if that is failed nothing left after the assertions so we put them in the last
+
+in case if we need to execute any statements after assertions we use soft assertion
+so even if validation/assertion failed the next statements execute
+
+in hard assertion we call method directly, instead we create object of SoftAssert class and create it's object
+and access all the methods same methods present in both hard and soft assertions
+
+at the end all at last we write "sa.assertAll()". -> otherwise it will always pass
+soft assertions by default pass
+
+--------------------------------------------------------------------
+                                dependency Methods
+--------------------------------------------------------------------
+
+if one method is dependent on other method
+we don't need to unnecessarily execute all the methods only the methods which are dependents
+should be passed then only the following methods will be executed
+
+if the dependent method test got failed then the that method will be skipped
+
+if other test methods which dont have any dependency those will be executed normally
+
+for single - @Test (dependsOnMethods = {"method name"})
+
+@Test(priority = 3, dependsOnMethods = {"login"})
+    void search(){
+        Assert.assertTrue(true);
+    }
+
+for multiple - @Test (dependsOnMethods = {"method name", "method name"})
+
+@Test(priority = 4, dependsOnMethods = {"login", "search"})
+    void advSearch(){
+        Assert.assertTrue(true);
+    }
+
