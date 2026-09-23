@@ -452,6 +452,7 @@ xml -
 </suite>
 
 ------------- parallel execution ----------------------
+
 here we need to tell to suite parallel="tests" - as we need to run all 3 test together at once we use parallel="tests" at suite level
 
 <suite name="parallelTesting" verbose="2" parallel="tests">
@@ -520,3 +521,75 @@ xml -
     </test>
 
 </suite>
+
+
+--------------------------------------------------------------------
+                             testNG listeners/post actions
+--------------------------------------------------------------------
+
+testng listeners -> when run test cases (pass/fail/skip)
+based on result we perform some action called post actions
+based on execute status of test methods (pass/fail/skip) execution is done - we perform certain actions
+those are post actions
+
+actions if test method like pass -> post action is update results in report (post actions)
+if test method failed -> take screenshot and update in report (post actions)
+skipped -> update in report (post actions)
+
+to perform post action we use listeners
+create listeners class -> implements ITestListener interface
+implements those interface methods in our listeners class implement as per our requirement
+in xml we have specify listeners class
+
+1. create test case
+2. create listener class and implement ITestListener interface and it's methods
+3. create xml file include both test case and listener class
+
+and execute so after our test case methods pass/fail/skip -> listeners class will perform post actions
+
+2 ways to implement listeners class
+1. implement ITestListener interface
+2. extend TestListenerAdapter
+
+both we can use difference there some default methods that are extracted to the implemented class TestListenerAdapter
+we go with implementing ITestListener interface - documentation : https://javadoc.io/static/org.testng/testng/7.9.0/org/testng/ITestListener.html
+
+implement methods like :
+onStart(ITestContext context)           -----------------> start of class
+onTestStart(ITestResult result)         -----------------> start of test methods (test cases) - (happens for all test methods)
+onTestSuccess(ITestResult result)       -----------------> if test methods passed (test cases)
+onTestFailure(ITestResult result)       -----------------> if test method failed (test cases)
+onTestSkipped(ITestResult result)       -----------------> if test method skipped (test cases)
+onFinish(ITestContext context)          -----------------> end of class
+
+in the xml file we need to create listeners tag and all listener file path
+we shouldn't include this along with normal class, we should have a separate entry in xml file
+in xml file we can have multiple classes but for all classes there can be only one listener class -> reason basically it used to do post actions which works fine for all classes
+it check through file it's basically a utility file for generating a report
+
+<listeners>
+        <listener class-name="testNGListeners.listeners"/>
+    </listeners>
+
+full xml -
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="listeners" verbose="2">
+    <listeners>
+        <listener class-name="testNGListeners.listeners"/>
+    </listeners>
+    <test name="LoginTest">
+        <classes>
+            <class name="testNGListeners.orangeHRMLogin"/>
+        </classes>
+    </test>
+</suite>
+
+
+we can use 2 approaches
+ 1. with xml file pass listeners class and our class and it will do post actions
+ 2. instead of using xml, go to the class and use @Listener annotation -> @Listeners(listeners.class)
+
+in the class we write @Listeners(listeners.class)
+but out of those 2 we use xml approach because if we use annotation approach we have to write manually for all classes
+but with xml we just write once in listeners and include with the classes.
