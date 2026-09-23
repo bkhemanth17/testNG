@@ -42,7 +42,7 @@ public class demoDataDriven {
         driver.quit();
     }
 
-    @DataProvider(name = "dp")
+    @DataProvider(name = "dp", indices = {0,3})
     Object[][] loginData(){
         Object[][] objects = {
                 {"temp1@temp.com", "qwertyuiop"},

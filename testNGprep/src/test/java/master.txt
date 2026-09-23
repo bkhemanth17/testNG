@@ -287,3 +287,86 @@ full xml code :
     </test>
 </suite>
 
+--------------------------------------------------------------------
+                                Paramaterization
+--------------------------------------------------------------------
+
+we can pass parameters to the test
+in class we have multiple test methods we can use parameters pass to test method
+
+achieved using
+1. @DataProvider -> used in data-driven testing
+2. using xml file -> for parallel testing
+
+--------------------------------------------------------------------
+                                Data Providers
+--------------------------------------------------------------------
+
+
+1. @DataProvider - data driven testing
+data driven we read data from excel file and read the data and passed it to application
+after that we fetech data from application (capture some data)and passed to application -> we use loops
+instead of loops we use @DataProvider annotation
+
+we can avoid writing a loop statements
+inside data provider we provide test data it has logic and keeps in 2d array
+as soon as we read the data from excel file we put them in 2d array then pass data to test method
+so that it will repeat multiple times without loop and taking data from excel
+can be used for single and multiple test methods
+it will just provide data to applications (@Test) methods
+
+we can have multiple data providers in a single class
+and we can pass multiple data providers to multiple test methods
+
+the @DataProvider method return type will be a two dimensional array the data type can be String[][], Integer[][] or we can also use Object[][]
+sometimes the test data have string, number different combinations so better we use Object[][] data type
+
+it can be a 2D array and returns string or object... like that
+
+excel files and property files -> web automation testing
+json files, xml files -> api testing
+
+we need to give name to @DataProvider method and pass that name to @Test method
+
+@DataProvider(name = "dp")
+    Object[][] loginData(){
+        Object[][] objects = {
+                {"temp1@temp.com", "qwertyuiop"},
+                {"temp2@temp.com", "asdfghjklmn"},
+                {"temp3@temp.com", "zxcvbnmasdfghj"},
+                {"user@tempmail.com", "1234567890"}
+        };
+        return objects;
+    }
+
+@Test(dataProvider = "dp")
+    void login(String email, String passwd){
+        driver.get("https://tutorialsninja.com/demo/index.php?route=account/login");
+        driver.findElement(By.xpath("//input[@name='email']")).sendKeys(email);
+        driver.findElement(By.xpath("//input[@name='password']")).sendKeys(passwd);
+        driver.findElement(By.xpath("//input[@value='Login']")).click();
+        boolean status = driver.findElement(By.xpath("//a[text()= 'Edit Account']")).isDisplayed();
+        if(status){
+            driver.findElement(By.xpath("//a[@class = 'list-group-item' and text()= 'Logout']")).click();
+            Assert.assertTrue(true);
+        }else{
+            Assert.fail();
+        }
+    }
+
+see the methods for reference
+on the dataset of the data provider we can use indices (index number of arrays only those will run it's no range
+we only give index number of those arrays
+@DataProvider(name = "dp", indices = {0,2,3})
+    Object[][] loginData(){
+        Object[][] objects = {
+                {"temp1@temp.com", "qwertyuiop"},
+                {"temp2@temp.com", "asdfghjklmn"},
+                {"temp3@temp.com", "zxcvbnmasdfghj"},
+                {"user@tempmail.com", "1234567890"}
+        };
+        return objects;
+    }
+
+like this and @DataProvider(name = "dp") -> name should be unique and different
+

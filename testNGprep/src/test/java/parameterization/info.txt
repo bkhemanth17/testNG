@@ -57,5 +57,18 @@ we need to give name to @DataProvider method and pass that name to @Test method
     }
 
 see the methods for reference
+on the dataset of the data provider we can use indices (index number of arrays only those will run it's no range
+we only give index number of those arrays
+@DataProvider(name = "dp", indices = {0,2,3})
+    Object[][] loginData(){
+        Object[][] objects = {
+                {"temp1@temp.com", "qwertyuiop"},
+                {"temp2@temp.com", "asdfghjklmn"},
+                {"temp3@temp.com", "zxcvbnmasdfghj"},
+                {"user@tempmail.com", "1234567890"}
+        };
+        return objects;
+    }
 
+like this and @DataProvider(name = "dp") -> name should be unique and different
 
