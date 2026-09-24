@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-@Listeners(listeners.class)
+//@Listeners(listeners.class)
 public class orangeHRMLogin {
     WebDriver driver;
     WebDriverWait wait;
@@ -33,6 +33,8 @@ public class orangeHRMLogin {
         WebElement logo = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@alt='company-branding']")));
         boolean img = logo.isDisplayed();
         Assert.assertTrue(img);
+        String path = System.getProperty("user.dir");
+        System.out.println(path);
     }
 
     @Test(priority = 2)

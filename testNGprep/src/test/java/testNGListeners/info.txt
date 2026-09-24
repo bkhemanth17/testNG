@@ -64,3 +64,19 @@ we can use 2 approaches
 in the class we write @Listeners(listeners.class)
 but out of those 2 we use xml approach because if we use annotation approach we have to write manually for all classes
 but with xml we just write once in listeners and include with the classes.
+
+----------------------------------------------------------------------------------------
+                        Extent Report
+----------------------------------------------------------------------------------------
+
+extent report -> it's an external library we need to get the maven dependency
+link - https://mvnrepository.com/artifact/com.aventstack/extentreports
+
+the framework can be anything like selenium/anything but inbuilt programming lang be java/.net
+
+extent report class should implement ITestListener interface
+
+it has 3 classes mainly
+ExtentSparkReporter  ----------- class
+ExtentReport         ----------- class
+ExtentTest           ----------- class
