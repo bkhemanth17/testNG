@@ -1,0 +1,29 @@
+page object model
+
+is a design pattern we can maintain locators/web elements in a separate class
+locators - test methods - code - validations- actions
+pattern maintain locators, web elements in a separate class
+
+overcome - > duplication and updation
+
+2 approach create page object model
+
+1. without page factory
+2. use page factory
+
+
+1. without page factory
+
+implement locators, action methods, page factory
+
+2. With PageFactory
+use @FindBy -> annotation
+and in the constructor we use PageFactory.initElements(driver, this);
+public LoginPage(WebDriver driver){
+        this.driver= driver;
+        PageFactory.initElements(driver,this);
+    }
+
+use any one out of these 2
+@FindBy(xpath = "//input[@name='username']")
+@FindBy(how = How.XPATH, using = "//input[@name='username']")
